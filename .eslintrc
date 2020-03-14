@@ -1,0 +1,86 @@
+{
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".tsx"]
+      }
+    }
+  },
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended",
+    "eslint:recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "jest",
+    "babel",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "globals": {
+    "device": true,
+    "__DEV__": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": 0,
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreStrings": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "babel/semi": ["error", "always"],
+    "react/require-default-props": 0,
+    "react/no-unused-prop-types": 0,
+    "import/no-named-as-default": 0,
+    "react/sort-comp": [
+      2,
+      {
+        "order": [
+          "type-annotations",
+          "static-methods",
+          "instance-variables",
+          "lifecycle",
+          "everything-else",
+          "render"
+        ]
+      }
+    ],
+    "import/extensions": ["error", "never"],
+    "no-empty": 0,
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react/no-unescaped-entities": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100
+      }
+    ]
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

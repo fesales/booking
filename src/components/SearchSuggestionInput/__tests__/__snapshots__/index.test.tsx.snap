@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchSuggestionsInput should render component 1`] = `
+<form>
+  <label
+    className="search-input-label"
+    htmlFor="search-input"
+  >
+    input label
+  </label>
+  <input
+    className="search-input"
+    name="search-input"
+    onChange={[Function]}
+    placeholder="placeholder"
+    type="text"
+  />
+</form>
+`;

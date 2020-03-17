@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SuggestionsList should render component 1`] = `
+<ul
+  className="suggestions-list"
+>
+  <SuggestionsListItem
+    city="Manchester"
+    country="UK"
+    key="pick up location"
+    name="pick up location"
+    placeType="A"
+    region="region"
+  />
+</ul>
+`;

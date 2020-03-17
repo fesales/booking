@@ -51,6 +51,7 @@
     "babel/semi": ["error", "always"],
     "react/require-default-props": 0,
     "react/no-unused-prop-types": 0,
+    "react/jsx-props-no-spreading": 0,
     "import/no-named-as-default": 0,
     "react/sort-comp": [
       2,

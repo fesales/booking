@@ -1,0 +1,44 @@
+.suggestions-list-item {
+  border-bottom: 1px solid #b4b4b4;
+  display: flex;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 8px 16px;
+}
+
+.suggestions-list-item:hover {
+  background-color: #e7f4fe;
+}
+
+.suggestions-list-item-name {
+  display: block;
+  font-size: 14px;
+}
+
+.suggestion-list-item-place {
+  border-radius: 4px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  height: fit-content;
+  line-height: 21px;
+  margin-right: 25px;
+  min-width: 60px;
+  padding: 1px 4px;
+  text-align: center;
+}
+
+.suggestion-list-item-place--A {
+  background-color: rgb(150, 20, 18);
+}
+
+.suggestion-list-item-place--C {
+  background-color: rgb(10, 99, 176);
+}
+
+.suggestion-list-item-place--T {
+  background-color: rgb(91, 91, 91);
+}
+
+.suggestions-list-item-place-wrapper {
+  display: inline-flex;
+}

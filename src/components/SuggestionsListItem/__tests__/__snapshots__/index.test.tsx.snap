@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SuggestionsListItem should render component 1`] = `
+<li
+  className="suggestions-list-item"
+>
+  <div
+    className="suggestions-list-item-place-wrapper"
+  >
+    <span
+      className="suggestion-list-item-place suggestion-list-item-place--A"
+    >
+      Airport
+    </span>
+  </div>
+  <div>
+    <span
+      className="suggestions-list-item-name"
+    >
+      pick up location
+    </span>
+    <span
+      className="suggestions-list-item-info"
+    >
+      Manchester, United Kingdom
+    </span>
+  </div>
+</li>
+`;

@@ -7,9 +7,10 @@ import {
   RequestErrorAction,
   FetchError,
   RequestLoadingAction,
+  SuccessState,
 } from './types';
 
-export const initialState = {
+export const initialState: SuccessState<any> = {
   response: null,
   status: FetchStatus.SUCCESS,
 };
@@ -44,7 +45,7 @@ const reducer = <ApiResponse>(
     }
     case Actions.REQUEST_LOADING: {
       return {
-        ...state,
+        response: null,
         status: FetchStatus.PENDING,
       };
     }

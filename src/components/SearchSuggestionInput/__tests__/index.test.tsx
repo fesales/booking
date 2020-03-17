@@ -1,23 +1,35 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SearchSuggestionsInput from '..';
+import { PlaceType } from '../../../types/search';
 
 describe('SearchSuggestionsInput', () => {
   const defaultProps = {
     label: 'input label',
     placeholder: 'placeholder',
     onSearchTermChanged: () => {},
+    searchResults: [
+      {
+        city: 'Manchester',
+        country: 'UK',
+        name: 'pick up location',
+        region: 'region',
+        placeType: PlaceType.AIRPORT,
+      },
+    ],
   };
 
   it('should render component', () => {
     const wrapper = shallow(<SearchSuggestionsInput {...defaultProps} />);
 
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('form')).toHaveLength(1);
+    expect(wrapper.find('div')).toHaveLength(1);
     expect(wrapper.find('input')).toHaveLength(1);
     expect(wrapper.find('input').prop('placeholder')).toEqual(defaultProps.placeholder);
     expect(wrapper.find('label')).toHaveLength(1);
     expect(wrapper.find('label').text()).toEqual(defaultProps.label);
+    expect(wrapper.find('SuggestionsList')).toHaveLength(1);
+    expect(wrapper.find('SuggestionsList').prop('suggestions')).toEqual(defaultProps.searchResults);
   });
 
   it('should trigger search term changed with input value', () => {

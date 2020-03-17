@@ -1,16 +1,20 @@
 import React, { useCallback } from 'react';
 import './index.css';
+import { PickUpLocation } from '../../types/search';
+import SuggestionsList from '../SuggestionsList';
 
 interface Props {
   label: string;
   placeholder: string;
   onSearchTermChanged: (searchTerm: string) => void;
+  searchResults: PickUpLocation[] | null;
 }
 
 const SearchSuggestionsInput: React.FunctionComponent<Props> = ({
   label,
   onSearchTermChanged,
   placeholder,
+  searchResults,
 }: Props) => {
   const onInputChanged = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => onSearchTermChanged(event.target.value),
@@ -18,7 +22,7 @@ const SearchSuggestionsInput: React.FunctionComponent<Props> = ({
   );
 
   return (
-    <form>
+    <div>
       <label className="search-input-label" htmlFor="search-input">
         {label}
       </label>
@@ -29,7 +33,8 @@ const SearchSuggestionsInput: React.FunctionComponent<Props> = ({
         onChange={onInputChanged}
         placeholder={placeholder}
       />
-    </form>
+      {searchResults && <SuggestionsList suggestions={searchResults} />}
+    </div>
   );
 };
 

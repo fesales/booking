@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search widget should render component 1`] = `
+<section
+  className="search-widget"
+>
+  <h3
+    className="search-widget-title"
+  >
+    Where are you going?
+  </h3>
+  <SearchSuggestionsInput
+    label="Pick up location"
+    onSearchTermChanged={[Function]}
+    placeholder="city, airport, station, region and district..."
+    searchResults={null}
+  />
+</section>
+`;

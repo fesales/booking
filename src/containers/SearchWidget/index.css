@@ -1,0 +1,10 @@
+.search-widget {
+  background-color: #f3ce55;
+  padding: 24px;
+  text-align: left;
+  max-width: 500px;
+}
+
+.search-widget-title {
+  margin-top: 0;
+}

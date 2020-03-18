@@ -4,7 +4,7 @@ import SearchWidget, { SEARCH_INPUT_PLACEHOLDER, MAX_RESULTS } from '..';
 import useApi from '../../../hooks/useApi';
 import { FetchStatus } from '../../../hooks/useApi/types';
 
-jest.mock('../../../hooks/useApi', () => jest.fn(() => [{}]));
+jest.mock('../../../hooks/useApi', () => jest.fn(() => [{}, {}]));
 jest.mock('lodash.debounce', () => (func: () => void) => func);
 
 describe('Search widget', () => {
@@ -28,8 +28,8 @@ describe('Search widget', () => {
       status: FetchStatus.SUCCESS,
     };
 
-    it('should pass search results when it is not a success status', () => {
-      (useApi as jest.Mock).mockReturnValueOnce([mockedState]);
+    it('should pass search results when it is a success status', () => {
+      (useApi as jest.Mock).mockReturnValueOnce([mockedState, {}]);
 
       const wrapper = shallow(<SearchWidget />);
 
@@ -44,7 +44,7 @@ describe('Search widget', () => {
         status: FetchStatus.ERROR,
       };
 
-      (useApi as jest.Mock).mockReturnValueOnce([state]);
+      (useApi as jest.Mock).mockReturnValueOnce([state, {}]);
 
       const wrapper = shallow(<SearchWidget />);
 
@@ -57,7 +57,7 @@ describe('Search widget', () => {
       const makeRequest = jest.fn();
       const searchTerm = 'test';
 
-      (useApi as jest.Mock).mockReturnValueOnce([{}, makeRequest]);
+      (useApi as jest.Mock).mockReturnValueOnce([{}, { makeRequest }]);
 
       const wrapper = shallow(<SearchWidget />);
 
@@ -70,16 +70,18 @@ describe('Search widget', () => {
       });
     });
 
-    it('should not make new request when search term length is less than 2', () => {
+    it('should clear request when search term length is less than 2', () => {
+      const clearRequest = jest.fn();
       const makeRequest = jest.fn();
       const searchTerm = 't';
 
-      (useApi as jest.Mock).mockReturnValueOnce([{}, makeRequest]);
+      (useApi as jest.Mock).mockReturnValueOnce([{}, { clearRequest, makeRequest }]);
 
       const wrapper = shallow(<SearchWidget />);
 
       wrapper.find('SearchSuggestionsInput').simulate('searchTermChanged', searchTerm);
 
+      expect(clearRequest).toHaveBeenCalledTimes(1);
       expect(makeRequest).toHaveBeenCalledTimes(0);
     });
   });

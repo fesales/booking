@@ -8,8 +8,8 @@ export interface FetchError {
   message: string;
 }
 
-interface PendingState {
-  response: null;
+interface PendingState<ApiResponse> {
+  response: ApiResponse | FetchError | null;
   status: FetchStatus.PENDING;
 }
 
@@ -23,12 +23,17 @@ interface ErrorState {
   status: FetchStatus.ERROR;
 }
 
-export type State<ApiResponse> = PendingState | SuccessState<ApiResponse> | ErrorState;
+export type State<ApiResponse> = PendingState<ApiResponse> | SuccessState<ApiResponse> | ErrorState;
 
 export enum Actions {
+  CLEAR_STATE = 'CLEAR_STATE',
   REQUEST_LOADING = 'REQUEST_LOADING',
   REQUEST_SUCCESS = 'REQUEST_SUCCESS',
   REQUEST_ERROR = 'REQUEST_ERROR',
+}
+
+export interface ClearStateAction {
+  type: Actions.CLEAR_STATE;
 }
 
 export interface RequestLoadingAction {
@@ -46,6 +51,7 @@ export interface RequestErrorAction {
 }
 
 export type Action<ApiResponse> =
+  | ClearStateAction
   | RequestErrorAction
   | RequestSuccessAction<ApiResponse>
   | RequestLoadingAction;

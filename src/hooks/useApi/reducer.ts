@@ -8,12 +8,17 @@ import {
   FetchError,
   RequestLoadingAction,
   SuccessState,
+  ClearStateAction,
 } from './types';
 
 export const initialState: SuccessState<any> = {
   response: null,
   status: FetchStatus.SUCCESS,
 };
+
+export const clearState = (): ClearStateAction => ({
+  type: Actions.CLEAR_STATE,
+});
 
 export const requestLoading = (): RequestLoadingAction => ({
   type: Actions.REQUEST_LOADING,
@@ -36,6 +41,9 @@ const reducer = <ApiResponse>(
   action: Action<ApiResponse>
 ): State<ApiResponse> => {
   switch (action.type) {
+    case Actions.CLEAR_STATE: {
+      return initialState;
+    }
     case Actions.REQUEST_ERROR: {
       return {
         ...state,
@@ -45,7 +53,7 @@ const reducer = <ApiResponse>(
     }
     case Actions.REQUEST_LOADING: {
       return {
-        response: null,
+        ...state,
         status: FetchStatus.PENDING,
       };
     }

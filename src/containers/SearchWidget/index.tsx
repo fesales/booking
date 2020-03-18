@@ -11,10 +11,14 @@ export const SEARCH_INPUT_PLACEHOLDER = 'city, airport, station, region and dist
 export const MAX_RESULTS = 6;
 
 const SearchWidget = () => {
-  const [{ response, status }, makeRequest] = useApi<SearchApiResponse>(config.endpoints.search);
+  const [{ response, status }, { clearRequest, makeRequest }] = useApi<SearchApiResponse>(
+    config.endpoints.search
+  );
 
   const onSearchInputChanged = (searchTerm: string) => {
-    if (searchTerm.length > 1) {
+    if (searchTerm.length < 2) {
+      clearRequest();
+    } else {
       makeRequest({
         number_of_results_required: MAX_RESULTS,
         search_term: searchTerm,
@@ -25,7 +29,7 @@ const SearchWidget = () => {
   const debouncedSearchInputChanged = useMemo(() => debounce(onSearchInputChanged, 500), []);
 
   const searchResults: PickUpLocation[] | null = useMemo(() => {
-    return status === FetchStatus.SUCCESS && response
+    return status !== FetchStatus.ERROR && response
       ? (response as SearchApiResponse).results.docs
       : null;
   }, [response, status]);
@@ -34,6 +38,7 @@ const SearchWidget = () => {
     <section className="search-widget">
       <h3 className="search-widget-title">Where are you going?</h3>
       <SearchSuggestionsInput
+        isLoading={status === FetchStatus.PENDING}
         label="Pick up location"
         onSearchTermChanged={debouncedSearchInputChanged}
         placeholder={SEARCH_INPUT_PLACEHOLDER}

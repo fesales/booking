@@ -1,7 +1,24 @@
-import reducer, { initialState, requestSuccess, requestError, requestLoading } from '../reducer';
+import reducer, {
+  initialState,
+  requestSuccess,
+  requestError,
+  requestLoading,
+  clearState,
+} from '../reducer';
 import { FetchStatus } from '../types';
 
 describe('reducer', () => {
+  it('should clear state when action is dispatched', () => {
+    const state = {
+      response: new Error(''),
+      status: FetchStatus.ERROR,
+    };
+
+    const action = clearState();
+
+    expect(reducer(state, action)).toEqual(initialState);
+  });
+
   it('should set status as pending when loading action is dispatched', () => {
     const action = requestLoading();
 

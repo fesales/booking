@@ -23,13 +23,24 @@ describe('SearchSuggestionsInput', () => {
     const wrapper = shallow(<SearchSuggestionsInput {...defaultProps} />);
 
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('div')).toHaveLength(1);
+    expect(wrapper.find('div')).toHaveLength(2);
     expect(wrapper.find('input')).toHaveLength(1);
     expect(wrapper.find('input').prop('placeholder')).toEqual(defaultProps.placeholder);
     expect(wrapper.find('label')).toHaveLength(1);
     expect(wrapper.find('label').text()).toEqual(defaultProps.label);
     expect(wrapper.find('SuggestionsList')).toHaveLength(1);
     expect(wrapper.find('SuggestionsList').prop('suggestions')).toEqual(defaultProps.searchResults);
+  });
+
+  it('should render loading spinner if loading flag is true', () => {
+    const props = {
+      ...defaultProps,
+      isLoading: true,
+    };
+
+    const wrapper = shallow(<SearchSuggestionsInput {...props} />);
+
+    expect(wrapper.find('Spinner')).toHaveLength(1);
   });
 
   it('should trigger search term changed with input value', () => {

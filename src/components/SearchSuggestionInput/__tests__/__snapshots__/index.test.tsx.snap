@@ -14,23 +14,12 @@ exports[`SearchSuggestionsInput should render component 1`] = `
     <input
       className="search-input"
       name="search-input"
+      onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
       placeholder="placeholder"
       type="text"
     />
   </div>
-  <SuggestionsList
-    suggestions={
-      Array [
-        Object {
-          "city": "Manchester",
-          "country": "UK",
-          "name": "pick up location",
-          "placeType": "A",
-          "region": "region",
-        },
-      ]
-    }
-  />
 </div>
 `;

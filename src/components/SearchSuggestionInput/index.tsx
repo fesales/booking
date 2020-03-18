@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import './index.css';
 import { PickUpLocation } from '../../types/search';
 import SuggestionsList from '../SuggestionsList';
@@ -19,9 +19,19 @@ const SearchSuggestionsInput: React.FunctionComponent<Props> = ({
   placeholder,
   searchResults,
 }: Props) => {
+  const [isInputFocused, setInputFocused] = useState(false);
+
   const onInputChanged = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => onSearchTermChanged(event.target.value),
     []
+  );
+
+  const onBlur = useCallback(() => setInputFocused(false), []);
+  const onFocus = useCallback(() => setInputFocused(true), []);
+
+  const showSuggestionsList = useMemo(
+    () => isInputFocused && searchResults && searchResults.length > 0,
+    [isInputFocused, searchResults]
   );
 
   return (
@@ -35,11 +45,13 @@ const SearchSuggestionsInput: React.FunctionComponent<Props> = ({
           className="search-input"
           name="search-input"
           type="text"
+          onBlur={onBlur}
           onChange={onInputChanged}
+          onFocus={onFocus}
           placeholder={placeholder}
         />
       </div>
-      {searchResults && <SuggestionsList suggestions={searchResults} />}
+      {showSuggestionsList && <SuggestionsList suggestions={searchResults!} />}
     </div>
   );
 };

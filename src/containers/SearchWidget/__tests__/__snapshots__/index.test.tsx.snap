@@ -11,7 +11,7 @@ exports[`Search widget should render component 1`] = `
   </h3>
   <SearchSuggestionsInput
     isLoading={false}
-    label="Pick up location"
+    label="Pick-up location"
     onSearchTermChanged={[Function]}
     placeholder="city, airport, station, region and district..."
     searchResults={null}

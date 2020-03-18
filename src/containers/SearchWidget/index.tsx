@@ -39,7 +39,7 @@ const SearchWidget = () => {
       <h3 className="search-widget-title">Where are you going?</h3>
       <SearchSuggestionsInput
         isLoading={status === FetchStatus.PENDING}
-        label="Pick up location"
+        label="Pick-up location"
         onSearchTermChanged={debouncedSearchInputChanged}
         placeholder={SEARCH_INPUT_PLACEHOLDER}
         searchResults={searchResults}
